@@ -29,18 +29,13 @@ var maxAncestorDiff = function(root) {
         
         const leftBounds = dfs(currNode.left);
         const rightBounds = dfs(currNode.right);
-        console.log("Node", currNode.val)
-        console.log("leftBounds", leftBounds)
-        console.log("rightBounds", rightBounds)
+
         const maxDiffLeft = leftBounds.min !== null ? getMaxDiff(currNode.val, leftBounds) : 0;
         const maxDiffRight = rightBounds.min !== null ? getMaxDiff(currNode.val, rightBounds) : 0;
+        
         const currMaxDiff =  Math.max(maxDiffLeft, maxDiffRight);
-        console.log("currMaxDiff", currMaxDiff)
-        console.log("maxDiff", maxDiff)
         maxDiff = Math.max(currMaxDiff, maxDiff)
-        console.log("newMaxDiff", maxDiff)
-        console.log("min", Math.min(leftBounds.min || Infinity, rightBounds.min))
-        console.log("max", Math.max(leftBounds.max || -Infinity, rightBounds.max))
+        
         return {
             min: Math.min(leftBounds.min === null ? Infinity : leftBounds.min, rightBounds.min === null ? Infinity : rightBounds.min, currNode.val),
             max: Math.max(leftBounds.max === null ? -Infinity : leftBounds.max,  rightBounds.max === null ? -Infinity : rightBounds.max, currNode.val),
