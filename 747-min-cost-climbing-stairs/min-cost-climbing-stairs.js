@@ -9,9 +9,7 @@ var minCostClimbingStairs = function(cost) {
     let minCostPrev2 = 0;
     
     for(let step = 2; step <= floorCount; step++) {
-        const prevFloor = minCostPrev + cost[step - 1];
-        const curr = minCostPrev2 + cost[step-2];
-        minCosrCurr = Math.min(prevFloor, curr);
+        minCosrCurr = Math.min(minCostPrev + cost[step - 1], minCostPrev2 + cost[step-2]);
         let temp = minCostPrev;
         minCostPrev = minCosrCurr;
         minCostPrev2 = temp;
