@@ -4,32 +4,18 @@
  * @return {number}
  */
 var coinChange = function(coins, amount) {
-    if (amount <= 0) return 0;
-    const dp = new Array(amount).fill(-1);
-    let currAmount = 1;
-    while (currAmount <= amount) {
-        let prevMin = -1; 
+    if (amount === 0) return 0;
+
+    const dp = new Array(amount + 1).fill(Infinity);
+    dp[0] = 0;  // Base case: 0 coins are needed for amount 0
+
+    for (let currAmount = 1; currAmount <= amount; currAmount++) {
         for (let coin of coins) {
-            const prevAmountPossible = currAmount - coin;
-            // console.log("prevAmountPossible", prevAmountPossible)
-            if (prevAmountPossible < 0) continue;
-            
-            if (prevAmountPossible === 0) { 
-                // console.log("sdfsdfsdfsdfsdf")
-                prevMin = 0
-                break;
+            if (currAmount - coin >= 0) {
+                dp[currAmount] = Math.min(dp[currAmount], dp[currAmount - coin] + 1);
             }
-            
-            const a = dp[prevAmountPossible];
-            // console.log("a", a)
-            
-            if(a === -1) continue;
-            prevMin = prevMin > -1 ? Math.min(prevMin,  a) : a;
         }
-        // console.log("prevMin", prevMin)
-        dp[currAmount] = prevMin === -1 ? -1 : prevMin + 1;
-        // console.log(dp)
-        currAmount++;
     }
-    return dp[amount]
+
+    return dp[amount] === Infinity ? -1 : dp[amount];
 };
