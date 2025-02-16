@@ -8,20 +8,11 @@ var lengthOfLIS = function(nums) {
 
     let endIndex = 1;
     while(endIndex < numsCount) {
-        // console.log(">>>>>>>>>>>")
-        // console.log("endIndex", endIndex)
-        // console.log("nums[endIndex]", nums[endIndex])
         let startIndex = 0;
         while (startIndex < endIndex) {
-            // console.log("++++++++++")
-            // console.log("startIndex", startIndex)
-            // console.log("nums[startIndex]",nums[startIndex])
-            // console.log("dp[startIndex]", dp[startIndex])
-            // console.log("dp[endIndex] old", dp[endIndex])
             if (nums[startIndex] < nums[endIndex]) {
                 dp[endIndex] = Math.max(dp[endIndex], dp[startIndex] + 1);
             }
-            // console.log("dp[endIndex] new", dp[endIndex])
             startIndex++;
         }
         endIndex++;
