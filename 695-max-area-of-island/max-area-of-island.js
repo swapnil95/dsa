@@ -20,11 +20,11 @@ var maxAreaOfIsland = function(grid) {
 
                 while (stack.length) {
                     // Element to explore from
-                    const currKey = stack.shift();
+                    const currKey = stack.pop();
                     if (!visited.has(currKey)) {
                         visited.add(currKey);
                         currArea++;
-                        let [currRow, currCol] = currKey.split('-');
+                        let [currRow, currCol] = currKey.split('-')
                         currRow = parseInt(currRow);
                         currCol = parseInt(currCol);
                         const leftKey = `${currRow}-${currCol-1}`;
