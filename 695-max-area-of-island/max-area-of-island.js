@@ -33,16 +33,16 @@ var maxAreaOfIsland = function(grid) {
                         const topKey = `${currRow-1}-${currCol}`;
                         const bottomKey = `${currRow+1}-${currCol}`;
 
-                        if (currCol > 0 && grid[currRow][currCol-1] === 1 && !visited.has(leftKey)) {
+                        if (currCol > 0 && grid[currRow][currCol-1] === 1) {
                             stack.push(leftKey);
                         }
-                        if (currCol < cols-1 && grid[currRow][currCol+1] === 1 && !visited.has(rightKey)) {
+                        if (currCol < cols-1 && grid[currRow][currCol+1] === 1) {
                             stack.push(rightKey);
                         }
-                        if (currRow > 0 && grid[currRow-1][currCol] === 1 && !visited.has(topKey)) {
+                        if (currRow > 0 && grid[currRow-1][currCol] === 1) {
                             stack.push(topKey);
                         }
-                        if (currRow < rows -1 && grid[currRow+1][currCol] === 1 && !visited.has(bottomKey)) {
+                        if (currRow < rows -1 && grid[currRow+1][currCol] === 1) {
                             stack.push(bottomKey);
                         }
                     }
