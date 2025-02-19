@@ -21,28 +21,27 @@ var maxAreaOfIsland = function(grid) {
                 while (stack.length) {
                     // Element to explore from
                     const currKey = stack.shift();
-                    let [currRow, currCol] = currKey.split('-');
-                    currRow = parseInt(currRow);
-                    currCol = parseInt(currCol);
                     if (!visited.has(currKey)) {
                         visited.add(currKey);
-                        currArea++
-                        
+                        currArea++;
+                        let [currRow, currCol] = currKey.split('-');
+                        currRow = parseInt(currRow);
+                        currCol = parseInt(currCol);
                         const leftKey = `${currRow}-${currCol-1}`;
                         const rightKey = `${currRow}-${currCol+1}`;
                         const topKey = `${currRow-1}-${currCol}`;
                         const bottomKey = `${currRow+1}-${currCol}`;
 
-                        if (currCol > 0 && grid[currRow][currCol-1] === 1) {
+                        if (currCol > 0 && grid[currRow][currCol-1] === 1 && !visited.has(leftKey)) {
                             stack.push(leftKey);
                         }
-                        if (currCol < cols-1 && grid[currRow][currCol+1] === 1) {
+                        if (currCol < cols-1 && grid[currRow][currCol+1] === 1 && !visited.has(rightKey)) {
                             stack.push(rightKey);
                         }
-                        if (currRow > 0 && grid[currRow-1][currCol] === 1) {
+                        if (currRow > 0 && grid[currRow-1][currCol] === 1 && !visited.has(topKey)) {
                             stack.push(topKey);
                         }
-                        if (currRow < rows -1 && grid[currRow+1][currCol] === 1) {
+                        if (currRow < rows -1 && grid[currRow+1][currCol] === 1 && !visited.has(bottomKey)) {
                             stack.push(bottomKey);
                         }
                     }
