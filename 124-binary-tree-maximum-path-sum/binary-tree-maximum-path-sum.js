@@ -17,10 +17,8 @@ var maxPathSum = function(root) {
         if (node === null) {
             return 0;
         }
-        let maxSumLeft = getMaxPath(node.left);
-        let maxSumRight = getMaxPath(node.right);
-        maxSumLeft = maxSumLeft > -1 ? maxSumLeft : 0;
-        maxSumRight = maxSumRight > -1 ? maxSumRight : 0 ;
+        const maxSumLeft = Math.max(0, getMaxPath(node.left));
+        const maxSumRight = Math.max(0, getMaxPath(node.right));
         const maxSumCurr = maxSumLeft + maxSumRight + node.val;
         maxPathSum = Math.max(maxSumCurr, maxPathSum);
         return Math.max(maxSumLeft, maxSumRight) + node.val;
